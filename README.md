@@ -29,3 +29,7 @@ overwise do
 > npm install
 
 so every package and dependency listed in package.json will be installed
+
+* run
+
+> gulp
