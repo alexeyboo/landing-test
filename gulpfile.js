@@ -5,6 +5,9 @@ const sass = require('gulp-sass');
 const spritesmith = require('gulp.spritesmith');
 const rimraf = require('rimraf');
 const rename = require('gulp-rename');
+const plugin1 = require('gulp-plugin1');
+const plugin2 = require('gulp-plugin2');
+const sourcemaps = require('gulp-sourcemaps');
 
 
 
@@ -75,6 +78,16 @@ gulp.task('copy', gulp.parallel('copy:fonts', 'copy:images'));
 gulp.task('watch', function() {
   gulp.watch('source/template/**/*.pug', gulp.series('templates:compile'));
   gulp.watch('source/styles/**/*.scss', gulp.series('styles:compile'));
+});
+
+/* ------------ Sourcemaps ------------- */
+gulp.task('javascript', function() {
+  gulp.src('source/**/*.js')
+    .pipe(sourcemaps.init())
+      .pipe(plugin1())
+      .pipe(plugin2())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('default', gulp.series(

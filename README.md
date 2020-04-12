@@ -12,8 +12,7 @@ if you see a version, then everything is ok
 
 > gulp -v
 
-* if you see CLI version and local version, then everything is ok 
-overwise do
+* if you see CLI version and local version, then everything is ok, overwise do
 
 > npm install gulp-cli -g
 > npm install gulp -D
