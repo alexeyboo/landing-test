@@ -8,6 +8,7 @@ const rename = require('gulp-rename');
 const plugin1 = require('gulp-plugin1');
 const plugin2 = require('gulp-plugin2');
 const sourcemaps = require('gulp-sourcemaps');
+const autoprefixer = require('gulp-autoprefixer');
 
 
 
@@ -89,6 +90,15 @@ gulp.task('javascript', function() {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist'));
 });
+
+/* ------------ Autoprefixer ------------- */
+exports.default = () => (
+    gulp.src('source/app.css')
+        .pipe(autoprefixer({
+            cascade: false
+        }))
+        .pipe(gulp.dest('dist'))
+);
 
 gulp.task('default', gulp.series(
   'clean',
