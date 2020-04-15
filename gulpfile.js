@@ -5,13 +5,8 @@ const sass = require('gulp-sass');
 const spritesmith = require('gulp.spritesmith');
 const rimraf = require('rimraf');
 const rename = require('gulp-rename');
-const plugin1 = require('gulp-plugin1');
-const plugin2 = require('gulp-plugin2');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
-
-
-
 
 /* -------- Server  -------- */
 gulp.task('server', function() {
@@ -85,24 +80,13 @@ gulp.task('watch', function() {
 gulp.task('javascript', function() {
   gulp.src('source/**/*.js')
     .pipe(sourcemaps.init())
-      .pipe(plugin1())
-      .pipe(plugin2())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist'));
 });
 
-/* ------------ Autoprefixer ------------- */
-exports.default = () => (
-    gulp.src('source/app.css')
-        .pipe(autoprefixer({
-            cascade: false
-        }))
-        .pipe(gulp.dest('dist'))
-);
-
 gulp.task('default', gulp.series(
-  'clean',
-  gulp.parallel('templates:compile', 'styles:compile', 'sprite', 'copy'),
-  gulp.parallel('watch', 'server')
+    'clean',
+    gulp.parallel('templates:compile', 'styles:compile', 'sprite', 'copy'),
+    gulp.parallel('watch', 'server')
   )
 );
